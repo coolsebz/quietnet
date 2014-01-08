@@ -52,13 +52,12 @@ if __name__ == "__main__":
         # get user input and play message
         while True:
             message = raw_input('> ')
-            print type(message)
             try:
                 pattern = psk.encode(message)
+                buffer = make_buffer_from_bit_pattern(pattern, FREQ, FREQ_OFF)
+                play_buffer(buffer)
             except:
                 print 'Unable to send message'
-            buffer = make_buffer_from_bit_pattern(pattern, FREQ, FREQ_OFF)
-            play_buffer(buffer)
     except KeyboardInterrupt:
         # clean up our streams and exit
         stream.stop_stream()
